@@ -28,12 +28,25 @@ function 計算 () {
         Bの数 = 0
     }
 }
+function シリアル通信serial () {
+    while (0 == 0) {
+        serial.writeNumbers([
+        input.lightLevel(),
+        input.runningTime() * 10,
+        input.compassHeading(),
+        input.temperature()
+        ])
+    }
+}
 input.onButtonPressed(Button.A, function () {
     ボタンAが押された時()
 })
 input.onPinPressed(TouchPin.P2, function () {
     記号の数 += 1
     記号のLED()
+})
+serial.onDataReceived("serial", function () {
+    シリアル通信serial()
 })
 input.onButtonPressed(Button.AB, function () {
     リセット()
@@ -43,6 +56,8 @@ input.onButtonPressed(Button.B, function () {
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     計算()
+    basic.pause(100)
+    serial.writeNumber(和差積商)
 })
 function 記号のLED () {
     if (記号の数 == 1) {
@@ -93,4 +108,5 @@ let 記号の数 = 0
 let 和差積商 = 0
 let Bの数 = 0
 let Aの数 = 0
+serial.redirectToUSB()
 basic.showString("Calculator ")
