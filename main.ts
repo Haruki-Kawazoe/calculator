@@ -28,6 +28,9 @@ function 計算 () {
         Bの数 = 0
     }
 }
+input.onButtonPressed(Button.A, function () {
+    ボタンAが押された時()
+})
 function シリアル通信serial () {
     while (0 == 0) {
         serial.writeNumbers([
@@ -38,9 +41,6 @@ function シリアル通信serial () {
         ])
     }
 }
-input.onButtonPressed(Button.A, function () {
-    ボタンAが押された時()
-})
 input.onPinPressed(TouchPin.P2, function () {
     記号の数 += 1
     記号のLED()
